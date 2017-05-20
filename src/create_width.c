@@ -6,7 +6,7 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 15:51:28 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/16 21:09:59 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/20 02:55:06 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*create_width(const t_tag *tag, int init_len)
 		num = 1;
 	if (num && !tag->l_just)
 	{
-		if (tag->pad == '0')
+		if (tag->pad == '0' && !tag->precision)
 		{
 			if ((int)tag->arg < 0)
 				ret[i++] = '-';
@@ -37,7 +37,7 @@ char	*create_width(const t_tag *tag, int init_len)
 	}
 	while (i < size - 1)
 		ret[i++] = tag->pad;
-	if (num && !tag->l_just && tag->sign)
+	if (num && !tag->l_just && tag->sign && !tag->precision)
 	{
 		if (tag->pad != '0')
 		{

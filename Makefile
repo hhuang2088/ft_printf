@@ -6,7 +6,7 @@
 #    By: hehuang <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/20 23:19:16 by hehuang           #+#    #+#              #
-#    Updated: 2017/05/17 23:38:31 by hehuang          ###   ########.fr        #
+#    Updated: 2017/05/19 10:17:37 by hehuang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,9 @@ SRC_FILES = ft_printf.c \
 			get_width.c \
 			create_width.c \
 			join_width.c \
-			handle_percent.c
+			handle_percent.c \
+			get_precision.c \
+			precision_itoa.c
 LIB_FILES = ft_memset.c \
 			ft_bzero.c \
 			ft_memcpy.c \

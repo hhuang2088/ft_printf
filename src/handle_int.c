@@ -6,7 +6,7 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 11:41:24 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/16 21:56:07 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/20 03:07:18 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ int		handle_int(const t_tag *tag)
 	char	*width;
 	int		len;
 
-	if (tag->neg && !tag->l_just)
-		num = ft_itoa((int)tag->arg * -1);
-	else
-		num = ft_itoa((int)tag->arg);
+	num = precision_itoa(tag, 10, 0);
 	init_len = ft_strlen(num);
 	width = create_width(tag, init_len);
 	if (width)
@@ -34,6 +31,7 @@ int		handle_int(const t_tag *tag)
 			ret = ft_strjoin(width, num);
 		ft_putstr(ret);
 		len = ft_strlen(ret);
+		printf("ret is: |%s|\n", ret);
 		free(num);
 		free(ret);
 		return (len);

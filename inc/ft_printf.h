@@ -6,7 +6,7 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 17:43:10 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/17 23:38:04 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/19 10:16:55 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char	*scan_flag(const char *fmt);
 int		get_width(const char *fmt);
 char	*create_width(const t_tag *tag, int init_len);
 char	*join_width(char *base, char *width, int l_just);
-
+int		get_precision(const char *fmt);
+char	*precision_itoa(const t_tag *tag, int base, int cap);
 
 #endif

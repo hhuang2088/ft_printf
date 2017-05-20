@@ -6,7 +6,7 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:25:55 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/17 04:10:07 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/20 03:32:12 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int		handle_oct(const t_tag *tag)
 	char	*ret;
 	char	*width;
 
-	ret = ft_itoa_base((int)tag->arg, 8, 0);
-	if(tag->hash)
+	ret = precision_itoa(tag, 8, 0);
+	if(tag->hash && !tag->precision)
 		ret = ft_strjoin("0", ret);
 	width = create_width(tag, ft_strlen(ret));
 	if(width)

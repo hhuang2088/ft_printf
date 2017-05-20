@@ -6,7 +6,7 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:48:16 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/17 04:25:41 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/20 03:24:24 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		handle_hex(const t_tag *tag)
 	}
 	else
 		head = NULL;
-	num = ft_itoa_base((int)tag->arg, 16, tag->cap);
+	num = precision_itoa(tag, 16, tag->cap);
 	if(head)
 		ret = ft_strjoin(head, num);
 	else

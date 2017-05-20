@@ -6,7 +6,7 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 00:53:33 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/18 00:51:55 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/20 02:53:04 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int          process_tag(const char *fmt, void *c)
 	flags = scan_flag(fmt);
 	if (flags[0] == '-')
 		tag->l_just = 1;
-	if (flags[1] == '0' && tag->type != 'c' && tag->type != 's' && !tag->l_just)
+	if (flags[1] == '0' && tag->type != 'c' && tag->type != 's' && !tag->l_just && !tag->precision)
 		tag->pad = '0';
 	if (flags[2] == '+')
 		tag->sign = 1;
@@ -33,7 +33,8 @@ int          process_tag(const char *fmt, void *c)
 		tag->hash = 1;
 	if (flags[4] == ' ')
 			tag->space = 1;
-	if((tag->type == 'd' || tag->type == 'D' || tag->type == 'i') && (int)tag->arg < 0)
+	if((tag->type == 'd' || tag->type == 'D' || tag->type == 'i') && \
+			(int)tag->arg < 0)
 		tag->neg = 1;
 	len = handle_tag(tag);
 	return(len);
