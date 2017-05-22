@@ -6,13 +6,13 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 00:53:33 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/20 02:53:04 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/22 09:30:30 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int          process_tag(const char *fmt, void *c)
+int          process_tag(const char *fmt)
 {
 	int		j;
 	t_tag	*tag;
@@ -20,7 +20,7 @@ int          process_tag(const char *fmt, void *c)
 	int		len;
 
 	j = 0;
-	tag = init_tag(fmt, c);
+	tag = init_tag(fmt);
 	tag->type = get_type(fmt);
 	flags = scan_flag(fmt);
 	if (flags[0] == '-')
@@ -33,7 +33,7 @@ int          process_tag(const char *fmt, void *c)
 		tag->hash = 1;
 	if (flags[4] == ' ')
 			tag->space = 1;
-	if((tag->type == 'd' || tag->type == 'D' || tag->type == 'i') && \
+	if ((tag->type == 'd' || tag->type == 'D' || tag->type == 'i') && \
 			(int)tag->arg < 0)
 		tag->neg = 1;
 	len = handle_tag(tag);
