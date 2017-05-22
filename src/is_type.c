@@ -6,11 +6,11 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 06:06:24 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/18 00:52:35 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/20 06:47:22 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "ft_printf.h"
+#include "ft_printf.h"
 
 int is_type(char c)
 {

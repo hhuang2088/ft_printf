@@ -6,7 +6,7 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 08:52:37 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/20 03:06:25 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/22 09:38:46 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*precision_itoa(const t_tag *tag, int base, int cap)
 
 	num = (int)tag->arg;
 	neg = 0;
-	if (num < 0)
+	if (num < 0 && !tag->l_just)
 	{
 		num = -num;
 		neg = 1;
