@@ -6,17 +6,16 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 14:27:54 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/25 05:25:23 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/27 05:21:57 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char *zero_pad(int len)
+static char		*zero_pad(int len)
 {
 	char	*prec;
 	int		i;
-
 
 	i = 0;
 	if (len <= 0)
@@ -30,7 +29,7 @@ static char *zero_pad(int len)
 	return (prec);
 }
 
-char	*precision_utoa(const t_tag *tag, int base, int cap)
+char			*precision_utoa(const t_tag *tag, int base, int cap)
 {
 	char					*ret;
 	char					*prec;

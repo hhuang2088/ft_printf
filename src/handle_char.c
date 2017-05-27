@@ -6,7 +6,7 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 16:47:43 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/17 21:58:39 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/27 05:06:23 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int		handle_char(const t_tag *tag)
 
 	len = 0;
 	width = NULL;
-	if(tag->min_width > 0)
+	if (tag->min_width > 0)
 		width = create_width(tag, 1);
-	if(width)
+	if (width)
 	{
-		if(tag->l_just)
+		if (tag->l_just)
 		{
 			ft_putchar((char)tag->arg);
 			ft_putstr(width);
@@ -35,8 +35,8 @@ int		handle_char(const t_tag *tag)
 		}
 		len = ft_strlen(width);
 		free(width);
-		return(1 + len);
+		return (1 + len);
 	}
 	ft_putchar((char)tag->arg);
-	return(1);
+	return (1);
 }

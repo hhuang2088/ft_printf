@@ -6,7 +6,7 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 10:43:33 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/24 01:40:49 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/27 05:13:23 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int		handle_string(const t_tag *tag)
 
 	raw_len = ft_strlen((char*)tag->arg);
 	width = create_width(tag, raw_len);
-	if(width)
+	if (width)
 	{
-		if(tag->l_just)
+		if (tag->l_just)
 		{
 			ft_putstr((char*)tag->arg);
 			ft_putstr(width);
@@ -31,8 +31,8 @@ int		handle_string(const t_tag *tag)
 			ft_putstr(width);
 			ft_putstr((char*)tag->arg);
 		}
-		return(raw_len + ft_strlen(width));
+		return (raw_len + ft_strlen(width));
 	}
 	ft_putstr((char*)tag->arg);
-	return(raw_len);
+	return (raw_len);
 }

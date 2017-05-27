@@ -6,7 +6,7 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 04:09:41 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/22 19:50:27 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/27 05:04:19 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int		get_flag(char flag)
 	int		i;
 
 	flags = "-0+# \0";
-	while(i < ft_strlen(flags))
+	while (i < ft_strlen(flags))
 	{
 		if (flags[i++] == flag)
-			return(flags[i]);
+			return (flags[i]);
 	}
-	return(0);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 17:43:10 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/26 07:01:55 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/27 04:50:04 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int		handle_hex(const t_tag *tag);
 int		is_percent(const char *fmt, int i);
 int 	is_type(char type);
 int		is_flag(const char flag);
+int		is_length(const char length);
 int		handle_oct(const t_tag *tag);
 int		handle_int(const t_tag *tag);
 int		handle_char(const t_tag *tag);
@@ -50,7 +51,8 @@ int		handle_string(const t_tag *tag);
 int		handle_percent(const t_tag *tag);
 t_tag	*init_tag(const char *fmt);
 int   	next_point(const char *fmt, int i);
-char	get_type(const char *tag);
+char	get_type(const char *fmt);
+char	get_length(const char *fmt);
 char	*scan_flag(const char *fmt);
 int		get_width(const char *fmt);
 char	*create_width(const t_tag *tag, int init_len);
@@ -59,6 +61,9 @@ int		get_precision(const char *fmt);
 char	*precision_itoa(const t_tag *tag, int base, int cap);
 char	*precision_utoa(const t_tag *tag, int base, int cap);
 int		handle_unsigned(const t_tag *tag);
+void	*procrustean_bed(void *arg, const char length, \
+		const char type);
+
 va_list	g_lst;
 
 #endif

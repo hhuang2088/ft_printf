@@ -6,7 +6,7 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 11:58:08 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/26 02:34:00 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/27 05:00:22 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 char	get_length(const char *fmt)
 {
 	int		i;
-	char	*lengths;
 
 	i = 1;
 	while (fmt[i] && !is_type(fmt[i]) && !is_length(fmt[i]))
 		i++;
 	if (is_length(fmt[i]))
+	{
 		if (fmt[i] == 'l')
 		{
 			if (fmt[i + 1] && fmt[i + 1] == 'l')
@@ -28,12 +28,15 @@ char	get_length(const char *fmt)
 			else
 				return (fmt[i]);
 		}
-		else if (fmt[i] == 'h')
-			if (fmt[i + 1] && fmt[i + 1] == 'h')
-				return ('H');
-			else
-				return (fmt[i]);
+	}
+	else if (fmt[i] == 'h')
+	{
+		if (fmt[i + 1] && fmt[i + 1] == 'h')
+			return ('H');
 		else
 			return (fmt[i]);
-	return (NULL);
+	}
+	else
+		return (fmt[i]);
+	return ('0');
 }

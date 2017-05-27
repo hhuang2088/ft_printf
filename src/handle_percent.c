@@ -6,7 +6,7 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 15:42:37 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/18 00:31:16 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/27 05:12:57 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int		handle_percent(const t_tag *tag)
 		}
 		len = ft_strlen(width);
 		free(width);
-		return( 1 + len);
+		return (1 + len);
 	}
 	ft_putchar('%');
-	return(1);
+	return (1);
 }
