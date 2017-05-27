@@ -1,5 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
+/* ************************************************************************** */ /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   handle_hex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -28,7 +27,7 @@ int		handle_hex(const t_tag *tag)
 	}
 	else
 		head = NULL;
-	num = precision_itoa(tag, 16, tag->cap);
+	num = precision_utoa(tag, 16, tag->cap);
 	if(head)
 		ret = ft_strjoin(head, num);
 	else

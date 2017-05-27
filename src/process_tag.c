@@ -6,7 +6,7 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 00:53:33 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/22 09:30:30 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/26 07:59:56 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int          process_tag(const char *fmt)
 	if ((tag->type == 'd' || tag->type == 'D' || tag->type == 'i') && \
 			(int)tag->arg < 0)
 		tag->neg = 1;
+	t_tag->arg = procrustean_bed(t_tag->, t_tag->length, t_tag->type);
 	len = handle_tag(tag);
-	return(len);
+	return (len);
 }

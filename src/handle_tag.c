@@ -6,7 +6,7 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 00:53:27 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/18 00:54:10 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/25 04:19:16 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int handle_tag(t_tag *tag)
 {
-	if (tag->type == 's' || tag->type == 'S')
+	if (tag->type == 's' || tag->type == 'S' || tag->type == 'C')
 		return (handle_string(tag));
 	else if (tag->type == 'i' || tag->type == 'd' || tag->type == 'D')
 	{
@@ -29,9 +29,11 @@ int handle_tag(t_tag *tag)
 			tag->cap = 1;
 		return (handle_hex(tag));
 	}
-	else if (tag->type == 'c' || tag->type == 'C')
+	else if (tag->type == 'c')
 		return (handle_char(tag));
 	else if (tag->type == '%')
 		return (handle_percent(tag));
+	else if (tag->type == 'u' || tag->type == 'U')
+		return (handle_unsigned(tag));
 	return(0);
 }

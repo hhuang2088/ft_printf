@@ -1,27 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_flag.c                                         :+:      :+:    :+:   */
+/*   handle_wide.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/09 04:09:41 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/22 19:50:27 by hehuang          ###   ########.fr       */
+/*   Created: 2017/05/25 04:16:30 by hehuang           #+#    #+#             */
+/*   Updated: 2017/05/25 04:18:02 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int		get_flag(char flag)
-{
-	char	*flags;
-	int		i;
-
-	flags = "-0+# \0";
-	while(i < ft_strlen(flags))
-	{
-		if (flags[i++] == flag)
-			return(flags[i]);
-	}
-	return(0);
-}

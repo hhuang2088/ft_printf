@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_string.c                                    :+:      :+:    :+:   */
+/*   handle_unsigned.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/04 10:43:33 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/24 01:40:49 by hehuang          ###   ########.fr       */
+/*   Created: 2017/05/24 14:24:50 by hehuang           #+#    #+#             */
+/*   Updated: 2017/05/25 05:37:16 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		handle_string(const t_tag *tag)
+int		handle_unsigned(const t_tag *tag)
 {
-	int		raw_len;
+	char 	*num;
+	char	*ret;
+	int		init_len;
 	char	*width;
+	int		len;
 
-	raw_len = ft_strlen((char*)tag->arg);
-	width = create_width(tag, raw_len);
-	if(width)
+	num = precision_utoa(tag, 10, 0);
+	init_len = ft_strlen(num);
+	width = create_width(tag, init_len);
+	if (width)
 	{
-		if(tag->l_just)
-		{
-			ft_putstr((char*)tag->arg);
-			ft_putstr(width);
-		}
+		if (tag->l_just)
+			ret = ft_strjoin(num, width);
 		else
-		{
-			ft_putstr(width);
-			ft_putstr((char*)tag->arg);
-		}
-		return(raw_len + ft_strlen(width));
+			ret = ft_strjoin(width, num);
+		ft_putstr(ret);
+		len = ft_strlen(ret);
+		free(num);
+		free(ret);
+		return (len);
 	}
-	ft_putstr((char*)tag->arg);
-	return(raw_len);
+	ft_putstr(num);
+	free(num);
+	return (init_len);
 }
