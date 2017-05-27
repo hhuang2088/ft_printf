@@ -6,7 +6,7 @@
 #    By: hehuang <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/20 23:19:16 by hehuang           #+#    #+#              #
-#    Updated: 2017/05/19 10:17:37 by hehuang          ###   ########.fr        #
+#    Updated: 2017/05/26 00:48:58 by hehuang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRC_FILES = ft_printf.c \
 			handle_hex.c \
 			handle_char.c \
 			handle_string.c \
+			handle_unsigned.c \
 			is_percent.c \
 			is_type.c \
 			is_flag.c \
@@ -39,7 +40,8 @@ SRC_FILES = ft_printf.c \
 			join_width.c \
 			handle_percent.c \
 			get_precision.c \
-			precision_itoa.c
+			precision_itoa.c \
+			precision_utoa.c
 LIB_FILES = ft_memset.c \
 			ft_bzero.c \
 			ft_memcpy.c \
@@ -110,7 +112,8 @@ LIB_FILES = ft_memset.c \
 			btree_apply_suffix.c \
 			ft_findchar.c \
 			ft_realloc.c \
-			get_next_line.c
+			get_next_line.c \
+			ft_utoa_base.c
 AR = ar rc
 SRCS = $(addprefix $(SRCDIR), $(SRC_FILES))
 FILES = $(SRC_FILES) $(LIB_FILES)
@@ -139,5 +142,6 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	rm __.SYMDEF
+	rm __.SYMDEF\ SORTED
 
 re: fclean all

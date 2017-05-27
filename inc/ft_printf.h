@@ -6,7 +6,7 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 17:43:10 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/22 09:33:29 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/26 07:01:55 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_PRINTF_H
 # include <stdarg.h>
 # include <stdio.h>
+# include <wchar.h>
 # include "libft.h"
 
 typedef struct			s_tag
@@ -22,7 +23,7 @@ typedef struct			s_tag
 	int			l_just;
 	int			init_width;
 	int         min_width;
-	int         max_width;
+	char		length;
 	int         precision;
 	char        type;
 	int			header;
@@ -56,6 +57,8 @@ char	*create_width(const t_tag *tag, int init_len);
 char	*join_width(char *base, char *width, int l_just);
 int		get_precision(const char *fmt);
 char	*precision_itoa(const t_tag *tag, int base, int cap);
+char	*precision_utoa(const t_tag *tag, int base, int cap);
+int		handle_unsigned(const t_tag *tag);
 va_list	g_lst;
 
 #endif
