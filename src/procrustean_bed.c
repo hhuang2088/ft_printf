@@ -6,52 +6,51 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 06:59:11 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/27 05:55:05 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/29 19:09:16 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	*bed_helper(void *arg, const char length)
+static t_tag	*bed_helper(t_tag *tag)
 {
-	if (length == 'h')
-		return ((void*)((unsigned long)((unsigned short)arg)));
-	else if (length == 'l')
-		return ((void*)(unsigned long)arg);
-	else if (length == 'v')
-		return ((void*)(unsigned long long)arg);
-	else if (length == 'z')
-		return ((void*)((size_t)arg));
-	else if (length == 'H')
-		return ((void*)((unsigned long)((unsigned char)arg)));
-	else if (length == 'j')
-		return ((void*)((uintmax_t)arg));
-	return (arg);
+	if (tag->length == 'h')
+		tag->arg_ushort = (unsigned short)tag->arg;
+	else if (tag->length == 'l')
+		tag->arg_ulong = (unsigned long)tag->arg;
+	else if (tag->length == 'v')
+		tag->arg_ull = (unsigned long long)tag->arg;
+	else if (tag->length == 'z')
+		tag->arg_sizet = (size_t)tag->arg;
+	else if (tag->length == 'H')
+		tag->arg_uchar = (unsigned char)tag->arg;
+	else if (tag->length == 'j')
+		tag->arg_uintmaxt = (uintmax_t)tag->arg;
+	return (tag);
 }
 
-void		*procrustean_bed(void *arg, const char length, \
-		const char type)
+t_tag		*procrustean_bed(t_tag *tag)
 {
-	if (length && length != '0')
+	if (tag->length && tag->length != '0')
 	{
-		if (type == 'i' || type == 'd')
+		if (tag->type == 'i' || tag->type == 'd')
 		{
-			if (length == 'h')
-				return ((void*)((long)((short)arg)));
-			else if (length == 'l')
-				return ((void*)((long)arg));
-			else if (length == 'v')
-				return ((void*)((long long)arg));
-			else if (length == 'z')
-				return ((void*)((size_t)arg));
-			else if (length == 'H')
-				return ((void*)((long)((signed char)arg)));
-			else if (length == 'j')
-				return ((void*)((intmax_t)arg));
+			if (tag->length == 'h')
+				tag->arg_short = (short)tag->arg;
+			else if (tag->length == 'l')
+				tag->arg_long = (long)tag->arg;
+			else if (tag->length == 'v')
+				tag->arg_ll = (long long)tag->arg;
+			else if (tag->length == 'z')
+				tag->arg_sizet = (size_t)tag->arg;
+			else if (tag->length == 'H')
+				tag->arg_char = (signed char)tag->arg;
+			else if (tag->length == 'j')
+				tag->arg_intmaxt = (intmax_t)tag->arg;
 		}
-		else if (length && (type == 'o' || type == 'x' ||\
-				type == 'X' || type == 'u'))
-			bed_helper(arg, length);
+		else if (tag->length && (tag->type == 'o' || tag->type == 'x' ||\
+				tag->type == 'X' || tag->type == 'u'))
+			bed_helper(tag);
 	}
-	return (arg);
+	return (tag);
 }

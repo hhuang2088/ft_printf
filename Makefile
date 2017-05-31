@@ -6,7 +6,7 @@
 #    By: hehuang <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/20 23:19:16 by hehuang           #+#    #+#              #
-#    Updated: 2017/05/27 05:01:58 by hehuang          ###   ########.fr        #
+#    Updated: 2017/05/29 19:05:18 by hehuang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ SRC_FILES = ft_printf.c \
 			precision_itoa.c \
 			precision_utoa.c \
 			procrustean_bed.c \
-			get_length.c
+			get_length.c \
+			to_int.c
 LIB_FILES = ft_memset.c \
 			ft_bzero.c \
 			ft_memcpy.c \

@@ -24,6 +24,7 @@ t_tag	*init_tag(const char *fmt)
 	ret->min_width = get_width(fmt);
 	ret->precision = get_precision(fmt);
 	ret->length = get_length(fmt);
+	printf("length is at: %c\n", ret->length);
 	ret->cap = 0;
 	ret->hash = 0;
 	ret->header = 0;
@@ -32,5 +33,16 @@ t_tag	*init_tag(const char *fmt)
 	ret->sign = 0;
 	ret->neg = 0;
 	ret->arg = va_arg(g_lst, void*);
+	ret->arg_short = 0;
+	ret->arg_long = 0;
+	ret->arg_ll = 0;
+	ret->arg_ushort = 0;
+	ret->arg_ulong = 0;
+	ret->arg_ull = 0;
+	ret->arg_sizet = 0;
+	ret->arg_char = 0;
+	ret->arg_uchar = 0;
+	ret->arg_intmaxt = 0;
+	ret->arg_uintmaxt = 0;
 	return(ret);
 }

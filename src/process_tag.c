@@ -28,7 +28,7 @@ t_tag	*flag_helper(t_tag *tag, char *flags)
 	if ((tag->type == 'd' || tag->type == 'D' || tag->type == 'i') && \
 			(int)tag->arg < 0)
 		tag->neg = 1;
-	return (tag);	
+	return (tag);
 }
 
 int		process_tag(const char *fmt)
@@ -42,7 +42,7 @@ int		process_tag(const char *fmt)
 	flags = scan_flag(fmt);
 	tag = flag_helper(tag, flags);
 	tag->length = get_length(fmt);
-	tag->arg = procrustean_bed(tag->arg, tag->length, tag->type);
+	tag = procrustean_bed(tag);
 	len = handle_tag(tag);
 	return (len);
 }

@@ -31,12 +31,11 @@ char	get_length(const char *fmt)
 	}
 	else if (fmt[i] == 'h')
 	{
+		printf("we have a short value\n");
 		if (fmt[i + 1] && fmt[i + 1] == 'h')
 			return ('H');
 		else
 			return (fmt[i]);
 	}
-	else
-		return (fmt[i]);
 	return ('0');
 }

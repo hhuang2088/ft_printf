@@ -18,9 +18,7 @@ int handle_tag(t_tag *tag)
 	if (tag->type == 's' || tag->type == 'S' || tag->type == 'C')
 		return (handle_string(tag));
 	else if (tag->type == 'i' || tag->type == 'd' || tag->type == 'D')
-	{
 		return (handle_int(tag));
-	}
 	else if (tag->type == 'o')
 		return (handle_oct(tag));
 	else if (tag->type == 'x' || tag->type == 'X')

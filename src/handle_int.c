@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int		handle_int(const t_tag *tag)
+int			handle_int(t_tag *tag)
 {
 	char	*num;
 	char	*ret;
