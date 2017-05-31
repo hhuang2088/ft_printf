@@ -6,7 +6,7 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 08:52:37 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/29 19:15:56 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/30 20:53:55 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ static char	*get_dec(const t_tag *tag, int base, int cap)
 	else if (tag->length == 'v')
 		return(ft_itoa_base(tag->arg_ll, base, cap));
 	else if (tag->length == 'h')
-	{
-		printf("returning short value\n");
 		return(ft_itoa_base(tag->arg_short, base, cap));
-	}
 	else if (tag->length == 'z')
 		return(ft_itoa_base(tag->arg_sizet, base, cap));
 	else if (tag->length == 'H')

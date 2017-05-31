@@ -6,7 +6,7 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 11:58:08 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/27 05:00:22 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/30 20:52:49 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,15 @@ char	get_length(const char *fmt)
 			if (fmt[i + 1] && fmt[i + 1] == 'l')
 				return ('v');
 			else
-				return (fmt[i]);
+				return ('l');
 		}
-	}
-	else if (fmt[i] == 'h')
-	{
-		printf("we have a short value\n");
-		if (fmt[i + 1] && fmt[i + 1] == 'h')
-			return ('H');
-		else
-			return (fmt[i]);
+		else if (fmt[i] == 'h')
+		{
+			if (fmt[i + 1] && fmt[i + 1] == 'h')
+				return ('H');
+			else
+				return ('h');
+		}
 	}
 	return ('0');
 }

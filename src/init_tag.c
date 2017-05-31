@@ -6,7 +6,7 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 13:48:30 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/26 03:43:19 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/05/30 20:54:37 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ t_tag	*init_tag(const char *fmt)
 	ret->min_width = get_width(fmt);
 	ret->precision = get_precision(fmt);
 	ret->length = get_length(fmt);
-	printf("length is at: %c\n", ret->length);
 	ret->cap = 0;
 	ret->hash = 0;
 	ret->header = 0;
