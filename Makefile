@@ -6,46 +6,45 @@
 #    By: hehuang <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/20 23:19:16 by hehuang           #+#    #+#              #
-#    Updated: 2017/05/29 19:05:18 by hehuang          ###   ########.fr        #
+#    Updated: 2017/06/02 12:49:43 by hehuang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 HEADER = ./inc/
 SRCDIR = ./src/
-EXTRACT = ar -x ./inc/libft.a
-TEST_EXT = ar -x libftprintf.a
-FLAGS = -g -Wall -Wextra -Werror -c
+LIBDIR = ./libft/
+FLAGS = -g -Wall -Wextra -c
 CC = gcc
+FLAGS_TEST = -g -c
 OPTIONS = -I$(HEADER) $(FLAGS)
 SRC_FILES = ft_printf.c \
 			process_tag.c \
-			count_handle.c \
-			handle_int.c \
-			handle_hex.c \
-			handle_char.c \
-			handle_string.c \
-			handle_unsigned.c \
-			is_percent.c \
-			is_type.c \
-			is_flag.c \
-			is_length.c \
-			handle_oct.c \
+			handle_chars_and_strings.c \
 			handle_tag.c \
+			flag_util.c \
 			init_tag.c \
-			next_point.c \
-			get_type.c \
-			scan_flag.c \
-			get_width.c \
 			create_width.c \
-			join_width.c \
-			handle_percent.c \
-			get_precision.c \
 			precision_itoa.c \
 			precision_utoa.c \
-			procrustean_bed.c \
+			cast_int_with_length.c \
+			get_modifiers.c \
 			get_length.c \
-			to_int.c
+			ft_putwi.c \
+			ft_putws.c \
+			ft_wcslen.c \
+			ft_wstrlen.c \
+			ft_wstrnew.c \
+			ft_wstrcpy.c \
+			ft_wstrncpy.c \
+			ft_wcharlen.c \
+			handle_number_util.c \
+			handle_unsigned.c \
+			handle_decimal.c \
+			handle_oct.c \
+			handle_hex.c \
+			handle_invalid.c \
+			handle_wchar_and_wstr.c
 LIB_FILES = ft_memset.c \
 			ft_bzero.c \
 			ft_memcpy.c \
@@ -117,9 +116,10 @@ LIB_FILES = ft_memset.c \
 			ft_findchar.c \
 			ft_realloc.c \
 			get_next_line.c \
-			ft_utoa_base.c 
+			ft_utoa_base.c
 AR = ar rc
 SRCS = $(addprefix $(SRCDIR), $(SRC_FILES))
+LIB = $(addprefix $(LIBDIR), $(LIB_FILES))
 FILES = $(SRC_FILES) $(LIB_FILES)
 OBJ_NAME = $(FILES:.c=.o)
 RLIB = ranlib
@@ -132,20 +132,22 @@ $(LIB):
 	make -C ./libft
 
 $(NAME):
-	$(CC) $(OPTIONS) $(SRCS)
-	$(EXTRACT)
+	$(CC) $(OPTIONS) $(SRCS) $(LIB)
 	$(AR) $(NAME) $(OBJ_NAME)
 	$(RLIB) $(NAME)
-	$(TEST_EXT)
+
+test:
 	$(CC) $(OPTIONS) test.c -c
 	$(CC) $(OBJ_NAME) test.o -o hello
 
 clean:
-	rm -f $(OBJ_NAME)
+	rm -f *.o
 
 fclean: clean
 	rm -f $(NAME)
-	rm __.SYMDEF
-	rm __.SYMDEF\ SORTED
+
+cleantest:
+	rm -f test.o
+	rm -f hello
 
 re: fclean all

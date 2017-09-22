@@ -5,37 +5,51 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/24 14:24:50 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/25 05:37:16 by hehuang          ###   ########.fr       */
+/*   Created: 2017/09/21 15:35:46 by hehuang           #+#    #+#             */
+/*   Updated: 2017/09/21 15:36:07 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		handle_unsigned(const t_tag *tag)
+static char	*set_base(t_tag *tag)
 {
-	char 	*num;
-	char	*ret;
-	int		init_len;
-	char	*width;
-	int		len;
+	if (tag->prec)
+		return (ft_strjoin(tag->prec, tag->base));
+	else
+		return (ft_strdup(tag->base));
+}
 
-	num = precision_utoa(tag, 10, 0);
-	init_len = ft_strlen(num);
-	width = create_width(tag, init_len);
-	if (width)
+static char	*set_ret(t_tag *tag, char *base)
+{
+	if (tag->width)
 	{
 		if (tag->l_just)
-			ret = ft_strjoin(num, width);
+			return (ft_strjoin(base, tag->width));
 		else
-			ret = ft_strjoin(width, num);
-		ft_putstr(ret);
-		len = ft_strlen(ret);
-		free(num);
-		free(ret);
-		return (len);
+			return (ft_strjoin(tag->width, base));
 	}
-	ft_putstr(num);
-	free(num);
-	return (init_len);
+	else
+		return (ft_strdup(base));
+}
+
+int			handle_unsigned(t_tag *tag)
+{
+	char	*ret;
+	int		len;
+	char	*base;
+
+	tag = precision_utoa(tag, 10, 0);
+	base = set_base(tag);
+	if (tag->dot && ft_strcmp(tag->base, "0") == 0 && !tag->prec)
+	{
+		free(base);
+		base = ft_strdup("");
+	}
+	tag->width = create_width(tag, ft_strlen(base));
+	ret = set_ret(tag, base);
+	len = ft_strlen(ret);
+	ft_putstr(ret);
+	cleanup(tag, ret, base);
+	return (len);
 }

@@ -6,13 +6,27 @@
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 13:48:30 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/30 20:54:37 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/09/21 15:39:43 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_tag	*init_tag(const char *fmt)
+static int	find_dot(const char *fmt)
+{
+	int		i;
+
+	i = 0;
+	if (fmt[i] == '%')
+		i++;
+	while (fmt[i] && fmt[i] != '.' && !is_type(fmt[i]))
+		i++;
+	if (fmt[i] == '.')
+		return (1);
+	return (0);
+}
+
+t_tag		*init_tag(const char *fmt)
 {
 	t_tag	*ret;
 	int		i;
@@ -21,9 +35,13 @@ t_tag	*init_tag(const char *fmt)
 		return (NULL);
 	i = 0;
 	ret->type = get_type(fmt);
+	if (ret->type && ret->type != '%')
+		ret->arg = va_arg(g_lst, void*);
 	ret->min_width = get_width(fmt);
 	ret->precision = get_precision(fmt);
 	ret->length = get_length(fmt);
+	ret->dot = find_dot(fmt);
+	ret->space = 0;
 	ret->cap = 0;
 	ret->hash = 0;
 	ret->header = 0;
@@ -31,17 +49,5 @@ t_tag	*init_tag(const char *fmt)
 	ret->pad = ' ';
 	ret->sign = 0;
 	ret->neg = 0;
-	ret->arg = va_arg(g_lst, void*);
-	ret->arg_short = 0;
-	ret->arg_long = 0;
-	ret->arg_ll = 0;
-	ret->arg_ushort = 0;
-	ret->arg_ulong = 0;
-	ret->arg_ull = 0;
-	ret->arg_sizet = 0;
-	ret->arg_char = 0;
-	ret->arg_uchar = 0;
-	ret->arg_intmaxt = 0;
-	ret->arg_uintmaxt = 0;
-	return(ret);
+	return (ret);
 }

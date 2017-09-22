@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_handle.c                                     :+:      :+:    :+:   */
+/*   ft_wcharlen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/27 04:39:14 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/17 22:03:04 by hehuang          ###   ########.fr       */
+/*   Created: 2017/09/21 15:10:48 by hehuang           #+#    #+#             */
+/*   Updated: 2017/09/21 15:11:08 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		count_handle(const char *fmt)
+size_t		ft_wcharlen(wchar_t wc)
 {
-	int cnt;
-	int i;
-
-	cnt = 0;
-	i = 0;
-	while (fmt[i] != '\0')
-	{
-		if (fmt[i] == '%')
-		{
-			if (!is_percent(fmt, i))
-				cnt++;
-			if (fmt[i + 1])
-				i++;
-		}
-		i++;
-	}
-	return (cnt);
+	if (!wc)
+		return (0);
+	if (wc <= 127)
+		return (1);
+	else if (wc <= 2047)
+		return (2);
+	else if (wc <= 65535)
+		return (3);
+	else
+		return (4);
 }

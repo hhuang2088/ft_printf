@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_type.c                                          :+:      :+:    :+:   */
+/*   ft_wstrncpy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/27 06:06:24 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/27 05:18:19 by hehuang          ###   ########.fr       */
+/*   Created: 2016/09/26 14:22:33 by hehuang           #+#    #+#             */
+/*   Updated: 2016/10/19 10:39:08 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		is_type(const char c)
+wchar_t	*ft_wstrncpy(wchar_t *dst, const wchar_t *src, size_t len)
 {
-	int		i;
-	char	*types;
+	size_t		lensrc;
+	size_t		limit;
+	size_t		i;
 
-	types = "%sSpdDioOuUxXcC\0";
+	lensrc = ft_wcslen((wchar_t*)src);
+	limit = 0;
 	i = 0;
-	while (types[i])
+	while (i < lensrc)
 	{
-		if (c == types[i])
-			return (1);
+		if (limit + ft_wcharlen(src[i]) <= len)
+		{
+			limit += ft_wcharlen(src[i]);
+			dst[i] = src[i];
+		}
+		else
+		{
+			dst[i] = '\0';
+			return (dst);
+		}
 		i++;
 	}
-	return (0);
+	return (dst);
 }

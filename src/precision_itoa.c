@@ -3,33 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   precision_itoa.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: hehuang <hehuang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 08:52:37 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/30 20:53:55 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/09/21 14:59:40 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*get_dec(const t_tag *tag, int base, int cap)
+static char	*handle_negative(char *ret, int precision, int width, int l_just)
 {
-	if (tag->length == 'l')
-		return(ft_itoa_base(tag->arg_long, base, cap));
-	else if (tag->length == 'v')
-		return(ft_itoa_base(tag->arg_ll, base, cap));
-	else if (tag->length == 'h')
-		return(ft_itoa_base(tag->arg_short, base, cap));
-	else if (tag->length == 'z')
-		return(ft_itoa_base(tag->arg_sizet, base, cap));
-	else if (tag->length == 'H')
-		return(ft_itoa_base(tag->arg_char, base, cap));
-	else if (tag->length == 'j')
-		return(ft_itoa_base(tag->arg_intmaxt, base, cap));
-	return(ft_itoa_base((int)tag->arg, base, cap));
+	int		len;
+
+	len = precision - ft_strlen(ret);
+	if (ret[0] == '-' && (len > 0 || width) && !l_just)
+		return (ft_strdup(ret + 1));
+	return (ft_strdup(ret));
 }
 
-static char	*zero_pad(int len, int neg, int sign)
+static char	*get_dec(const t_tag *tag, int base, int cap)
+{
+	if (tag->length == 'l' || tag->type == 'D')
+		return (ft_itoa_base(tag->arg_long, base, cap));
+	else if (tag->length == 'v')
+		return (ft_itoa_base(tag->arg_ll, base, cap));
+	else if (tag->length == 'h')
+		return (ft_itoa_base(tag->arg_short, base, cap));
+	else if (tag->length == 'z')
+		return (ft_itoa_base(tag->arg_sizet, base, cap));
+	else if (tag->length == 'H')
+		return (ft_itoa_base(tag->arg_char, base, cap));
+	else if (tag->length == 'j')
+		return (ft_itoa_base(tag->arg_intmaxt, base, cap));
+	return (ft_itoa_base((int)tag->arg, base, cap));
+}
+
+static char	*zero_pad(int len, int neg, int sign, int l_just)
 {
 	char	*prec;
 	int		i;
@@ -51,28 +61,21 @@ static char	*zero_pad(int len, int neg, int sign)
 		while (i < (len + space))
 			prec[i++] = '0';
 	}
+	if (l_just && space && sign && len < 0 && !prec && !neg)
+		return (ft_strdup("+"));
 	return (prec);
 }
 
-char	*precision_itoa(const t_tag *tag, int base, int cap)
+t_tag		*precision_itoa(t_tag *tag, int base, int cap)
 {
-	char			*ret;
-	char			*prec;
 	int				len;
-	int				neg;
-	long long		arg;
+	char			*tmp;
 
-	neg = 0;
-	arg = (int)tag->arg;
-	if (arg < 0)
-	{
-		arg = -arg;
-		neg = 1;
-	}
-	ret = get_dec(tag, base, cap);
-	len = tag->precision - ft_strlen(ret);
-	prec = zero_pad(len, neg, tag->sign);
-	if (prec)
-		ret = ft_strjoin(prec, ret);
-	return (ret);
+	tmp = get_dec(tag, base, cap);
+	tag->base = handle_negative(tmp, tag->precision, tag->min_width,
+			tag->l_just);
+	len = tag->precision - ft_strlen(tag->base);
+	tag->prec = zero_pad(len, tag->neg, tag->sign, tag->l_just);
+	free(tmp);
+	return (tag);
 }

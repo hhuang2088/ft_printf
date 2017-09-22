@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tag_end.c                                          :+:      :+:    :+:   */
+/*   ft_wcslen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/27 05:24:31 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/27 05:25:57 by hehuang          ###   ########.fr       */
+/*   Created: 2017/09/21 14:47:23 by hehuang           #+#    #+#             */
+/*   Updated: 2017/09/21 14:47:28 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		next_spot(const char *fmt, int i)
+size_t		ft_wcslen(wchar_t *s)
 {
-	if (fmt[i])
-		i++;
-	while (is_flag(fmt[i]))
-		i++;
-	while (is_digit(fmt[i]))
-		i++;
-	while (fmt[i] == '.')
-		i++;
-	while (is_digit(fmt[i]))
-		i++;
-	while (is_type(fmt[i]))
+	size_t	i;
+
+	i = 0;
+	while (s[i])
 		i++;
 	return (i);
 }

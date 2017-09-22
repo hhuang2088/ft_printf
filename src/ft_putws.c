@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_string.c                                    :+:      :+:    :+:   */
+/*   ft_putws.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/04 10:43:33 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/27 05:13:23 by hehuang          ###   ########.fr       */
+/*   Created: 2017/09/21 15:06:17 by hehuang           #+#    #+#             */
+/*   Updated: 2017/09/21 15:07:21 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		handle_string(const t_tag *tag)
+int		ft_putws(wchar_t *s)
 {
-	int		raw_len;
-	char	*width;
+	size_t	i;
+	int		len;
 
-	raw_len = ft_strlen((char*)tag->arg);
-	width = create_width(tag, raw_len);
-	if (width)
-	{
-		if (tag->l_just)
-		{
-			ft_putstr((char*)tag->arg);
-			ft_putstr(width);
-		}
-		else
-		{
-			ft_putstr(width);
-			ft_putstr((char*)tag->arg);
-		}
-		return (raw_len + ft_strlen(width));
-	}
-	ft_putstr((char*)tag->arg);
-	return (raw_len);
+	i = 0;
+	len = 0;
+	if (!s)
+		return (ft_strlen(NULL));
+	while (i < ft_wcslen(s))
+		len += ft_putwi(s[i++]);
+	return (len);
 }

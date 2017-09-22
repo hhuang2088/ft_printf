@@ -3,25 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   handle_tag.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hehuang <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: hehuang <hehuang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 00:53:27 by hehuang           #+#    #+#             */
-/*   Updated: 2017/05/27 05:13:54 by hehuang          ###   ########.fr       */
+/*   Updated: 2017/09/21 15:38:04 by hehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int handle_tag(t_tag *tag)
+int		handle_tag(t_tag *tag)
 {
-	if (tag->type == 's' || tag->type == 'S' || tag->type == 'C')
+	if (tag->type == 's')
 		return (handle_string(tag));
+	if (tag->type == 'C')
+		return (handle_wchar(tag));
+	if (tag->type == 'S')
+		return (handle_ws(tag));
 	else if (tag->type == 'i' || tag->type == 'd' || tag->type == 'D')
-		return (handle_int(tag));
-	else if (tag->type == 'o')
+		return (handle_decimal(tag));
+	else if (tag->type == 'o' || tag->type == 'O')
 		return (handle_oct(tag));
-	else if (tag->type == 'x' || tag->type == 'X')
+	else if (tag->type == 'x' || tag->type == 'X' || tag->type == 'p')
 	{
 		if (tag->type == 'X')
 			tag->cap = 1;
