@@ -57,7 +57,7 @@ static int		print_sign(t_tag *tag, char *ret)
 		ft_putchar('+');
 		return (1);
 	}
-	else if (tag->space && !tag->neg && !tag->precision && !tag->width)
+	else if (tag->space && !tag->neg && !tag->width)
 	{
 		ft_putchar(' ');
 		return (1);
